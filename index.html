@@ -18,23 +18,22 @@
             <label for="peso" class="block text-sm font-medium text-gray-700">Peso da Pessoa (kg):</label>
             <input type="number" id="peso" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Digite o peso...">
         </div>
-        <button id="calcularBtn" class="bg-blue-500 text-white px-4 py-2 rounded-md w-full hover:bg-blue-600">Calcular</button>
         <div id="resultado" class="mt-4"></div>
     </div>
 
     <script>
-        document.getElementById('calcularBtn').addEventListener('click', function() {
+        document.getElementById('peso').addEventListener('input', function() {
             var peso = parseFloat(document.getElementById('peso').value);
+            var resultado = document.getElementById('resultado');
             if (!isNaN(peso)) {
                 var quantidadeTotal = peso * 60;
                 var quantidadeSRO = quantidadeTotal / 3;
                 var quantidadeOutros = (quantidadeTotal * 2) / 3;
-                var resultado = "<strong>Quantidade total de líquidos a ingerir:</strong> " + quantidadeTotal.toFixed(2) + " ml<br>";
-                resultado += "<strong>Quantidade de solução de reidratação oral (SRO):</strong> " + quantidadeSRO.toFixed(2) + " ml<br>";
-                resultado += "<strong>Quantidade de líquidos caseiros (água, suco de frutas, chás, etc.):</strong> " + quantidadeOutros.toFixed(2) + " ml";
-                document.getElementById('resultado').innerHTML = resultado;
+                resultado.innerHTML = "<strong>Quantidade total de líquidos a ingerir:</strong> " + quantidadeTotal.toFixed(2) + " ml<br>" +
+                    "<strong>Quantidade de solução de reidratação oral (SRO):</strong> " + quantidadeSRO.toFixed(2) + " ml<br>" +
+                    "<strong>Quantidade de líquidos caseiros (água, suco de frutas, chás, etc.):</strong> " + quantidadeOutros.toFixed(2) + " ml";
             } else {
-                document.getElementById('resultado').innerHTML = "Por favor, insira um peso válido.";
+                resultado.innerHTML = "Por favor, insira um peso válido.";
             }
         });
     </script>
